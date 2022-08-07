@@ -1,5 +1,106 @@
 @import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+:root {
+  --border-color: black;
+}
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Permanent Marker", Arial, Helvetica, sans-serif;
+  height: 100vh;
+  background-color: #f9fcf4;
+}
+
+header {
+  background-color: #566880;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 5em;
+  text-align: center;
+  color: #c2d6aa;
+}
+
+.board {
+  border: 2px solid black;
+  background-color: #fefefe;
+  width: 360px;
+  height: 360px;
+  display: grid;
+  margin: 0px auto;
+  grid-template-columns: 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px;
+}
+
+.comment {
+  font-size: 3em;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.reset {
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-family: "Permanent Marker", Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  padding: 5px 30px;
+  font-size: 2em;
+  background-color: #566880;
+  color: #c2d6aa;
+  border: none;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #364353;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5em;
+  cursor: pointer;
+}
+
+.square:hover {
+  background-color: #c2d6aa;
+}
+
+.square[data-index='0'],
+.square[data-index='1'],
+.square[data-index='3'],
+.square[data-index='4'] {
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.square[data-index='2'],
+.square[data-index='5'] {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.square[data-index='6'],
+.square[data-index='7'] {
+  border-right: 1px solid var(--border-color);
+}
+
+.result {
+  margin-top: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+.reset {
+  display: flex;
+  justify-content: center;
 }
