@@ -1,3 +1,3 @@
 # Tic Tac Toe
 
-View [here](https://squashjedi.github.io/tictactoe/)
+Click [here](https://squashjedi.github.io/tictactoe/) to play.
