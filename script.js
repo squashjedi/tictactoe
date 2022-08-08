@@ -1,3 +1,5 @@
+// gameBoard - Module Pattern
+
 const gameBoard = (function () {
   let state = []
 
@@ -30,11 +32,39 @@ const gameBoard = (function () {
   }
 })()
 
+// Player - Factory Function
+
+const Player = (function (name, piece) {
+  function getName() {
+    return name
+  }
+
+  function getPiece() {
+    return piece
+  }
+
+  return {
+    getName,
+    getPiece
+  }
+})
+
+// gameController - Module Pattern
+
 const gameController = (function () {
+  const players = []
+  const table = document.querySelector('.table')
+  const playerOne = document.querySelector('#playerOne')
+  const playerTwo = document.querySelector('#playerTwo')
+  const error = document.querySelector('.error')
+  error.style.display = 'none'
+  table.style.display = 'none'
+  const form = document.querySelector('form')
+  form.addEventListener('submit', submitForm)
   const comment = document.querySelector('.comment')
   const squareNodeList = document.querySelectorAll('.square')
   const reset = document.querySelector('.reset')
-  reset.addEventListener('click', startGame)
+  reset.addEventListener('click', resetGame)
 
   squareNodeList.forEach(square => {
     square.addEventListener('click', updateState)
@@ -50,9 +80,30 @@ const gameController = (function () {
     [2, 4, 6]
   ]
 
+  function submitForm(e) {
+    e.preventDefault()
+    if (playerOne.value === '' || playerTwo.value === '') {
+      error.style.display = 'block'
+      return
+    }
+    players['X'] = Player(playerOne.value)
+    players['O'] = Player(playerTwo.value)
+    startGame()
+  }
+
+  function resetGame() {
+    table.style.display = 'none'
+    form.style.display = 'block'
+  }
+
   function startGame() {
     move = 0
     gameOver = false
+    table.style.display = 'block'
+    form.style.display = 'none'
+    playerOne.value = ''
+    playerTwo.value = ''
+    error.style.display = 'none'
     gameBoard.initialise(squareNodeList)
     addMove()
     gameBoard.render(squareNodeList)
@@ -65,16 +116,17 @@ const gameController = (function () {
     })
     if (hasWon) {
       endGame(piece)
+      return
     } else if (move >= 9) {
       endGame()
-    } else {
-      addMove()
+      return
     }
+    addMove()
   }
 
   function addMove() {
     move++
-    comment.textContent = `${getCurrentPiece()}'s turn...`
+    comment.textContent = `${players[getCurrentPiece()].getName()}'s turn...`
   }
 
   function updateState(e) {
@@ -96,12 +148,10 @@ const gameController = (function () {
 
   function endGame(piece = false) {
     gameOver = true
-    comment.textContent = piece ? `${piece}'s wins!` : 'Draw!'
+    comment.textContent = piece ? `${players[getCurrentPiece()].getName()}'s wins!` : 'Draw!'
   }
 
   return {
     startGame
   }
 })()
-
-gameController.startGame()

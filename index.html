@@ -14,20 +14,37 @@
   <header>
     <h1>Tic-Tac-Toe</h1>
   </header>
-  <div class="comment"></div>
-  <div class="board">
-    <div class="square" data-index="0"></div>
-    <div class="square" data-index="1"></div>
-    <div class="square" data-index="2"></div>
-    <div class="square" data-index="3"></div>
-    <div class="square" data-index="4"></div>
-    <div class="square" data-index="5"></div>
-    <div class="square" data-index="6"></div>
-    <div class="square" data-index="7"></div>
-    <div class="square" data-index="8"></div>
-  </div>
-  <div class="reset">
-    <button type="button">Restart</button>
+
+  <form>
+    <legend>Who's playing?</legend>
+    <div>
+      <input type="text" id="playerOne" name="playerOne" placeholder="X's Name">
+    </div>
+    <div>
+      <input type="text" id="playerTwo" name="playerOne" placeholder="O's Name">
+    </div>
+    <div class="error">Enter both names!</div>
+    <div>
+      <button type="submit" id="submit">Start</button>
+    </div>
+  </form>
+
+  <div class="table">
+    <div class="comment"></div>
+    <div class="board">
+      <div class="square" data-index="0"></div>
+      <div class="square" data-index="1"></div>
+      <div class="square" data-index="2"></div>
+      <div class="square" data-index="3"></div>
+      <div class="square" data-index="4"></div>
+      <div class="square" data-index="5"></div>
+      <div class="square" data-index="6"></div>
+      <div class="square" data-index="7"></div>
+      <div class="square" data-index="8"></div>
+    </div>
+    <div class="reset">
+      <button type="button">Restart</button>
+    </div>
   </div>
 </body>
 
